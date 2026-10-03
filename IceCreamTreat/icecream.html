@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ice-Cream Treat 🍦</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--a:#ffc8e2;--b:#e3d2ff;--c:#d6f5ea;--card:rgba(255,255,255,.7);--ink:#5b1f48;--muted:#98618a;--pink:#ff4f9a;--pink2:#ff86bd;--no:#a98ac2;--cone:#e8a85f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--a:#3d1736;--b:#2a1a4a;--c:#16343a;--card:rgba(40,20,45,.7);--ink:#ffe3f1;--muted:#d8a5c6}}
+:root[data-theme="dark"]{--a:#3d1736;--b:#2a1a4a;--c:#16343a;--card:rgba(40,20,45,.7);--ink:#ffe3f1;--muted:#d8a5c6}
+html,body{height:100%;margin:0}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--a);background-image:linear-gradient(130deg,var(--a),var(--b),var(--c),var(--a));background-size:300% 300%;animation:bg 14s ease infinite;font-family:'Quicksand',system-ui,sans-serif;color:var(--ink);overflow:hidden}
+@keyframes bg{50%{background-position:100% 50%}}
+.stage{height:100%;display:flex;align-items:center;justify-content:center;padding:18px;position:relative;z-index:2}
+.card{width:100%;max-width:360px;background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:38px 38px 38px 10px;padding:26px 22px 30px;text-align:center;box-shadow:0 18px 50px rgba(255,79,154,.28);border:2px solid rgba(255,255,255,.6)}
+.cone{width:120px;height:150px;margin:-70px auto 6px;display:block;animation:wob 2.6s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 8px 10px rgba(255,79,154,.3))}
+@keyframes wob{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) translateY(-6px)}}
+.drip{animation:drip 2.6s ease-in infinite;transform-origin:top}
+@keyframes drip{0%,100%{transform:scaleY(.6)}60%{transform:scaleY(1.15)}}
+h1{font-family:'Pacifico',cursive;font-weight:400;font-size:30px;line-height:1.25;margin:10px 0 8px;color:var(--pink)}
+p{font-size:17px;line-height:1.5;margin:0 0 22px;color:var(--muted);font-weight:500}
+.row{display:flex;justify-content:center;align-items:center;gap:16px;min-height:64px}
+button,.btn{font-family:inherit;font-weight:700;font-size:18px;border:0;border-radius:999px;padding:14px 26px;cursor:pointer;text-decoration:none;display:inline-block;color:#fff;touch-action:manipulation}
+#yes{background:linear-gradient(135deg,var(--pink),var(--pink2));box-shadow:0 8px 20px rgba(255,79,154,.45);transition:transform .35s cubic-bezier(.3,1.6,.5,1);animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{50%{box-shadow:0 8px 34px rgba(255,79,154,.8)}}
+#no{background:var(--no);transition:left .25s,top .25s;z-index:5;white-space:nowrap}
+button:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hidden{display:none}
+#yesScreen h1{font-size:34px}
+.btn{background:#25a56a;margin-top:6px}
+.f{position:fixed;bottom:-60px;z-index:1;pointer-events:none;animation:rise linear forwards;opacity:.85}
+@keyframes rise{to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+.c{position:fixed;top:-40px;z-index:9;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.cone,.drip,#yes,body{animation:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <main class="card">
+    <svg class="cone" viewBox="0 0 120 150" aria-hidden="true">
+      <polygon points="30,70 90,70 60,146" fill="var(--cone)"/>
+      <path d="M40,82 L80,82 M46,98 L74,98 M52,114 L68,114" stroke="#c98334" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="58" r="32" fill="#ff9ccb"/>
+      <rect class="drip" x="34" y="66" width="12" height="22" rx="6" fill="#ff9ccb"/>
+      <circle cx="60" cy="34" r="25" fill="#fff0f7"/>
+      <circle cx="50" cy="26" r="4" fill="#ffc8e2"/><circle cx="68" cy="38" r="3.5" fill="#ffc8e2"/>
+      <circle cx="60" cy="9" r="8" fill="#e8184f"/><path d="M60 3 Q66 -4 72 -2" stroke="#3a9a5b" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+
+    <div id="askScreen">
+      <h1 id="title">Ice-Cream Treat 🍓</h1>
+      <p>Ice-cream khane chalogi? Meri taraf se treat hai! 🍦</p>
+      <div class="row">
+        <button id="yes">Haan, chalo! 💖</button>
+        <button id="no">Nahi 😢</button>
+      </div>
+    </div>
+
+    <div id="yesScreen" class="hidden">
+      <h1>Yayyy! 🎉</h1>
+      <p>Done! Milte hain, flavour tum choose karna 🍨💗</p>
+      <a class="btn" id="wa" target="_blank" rel="noopener">Reply bhej do 💌</a>
+    </div>
+  </main>
+</div>
+
+<script>
+var msgs=["Nahi 😢","Pakka na? 🥺","Soch lo ek baar 🥹","Itni bhi kya baat hai 😭","Strawberry bhi milegi 🍓"," Dekh lo phir 🙄","Natak mat kro 💔"];
+var n=0,yes=document.getElementById('yes'),no=document.getElementById('no');
+var titles=["Ek sawaal hai tumse… 🍓","Arre, ruko toh! 🥺","Button bhaag raha hai 😂","Haan bol do na 💗"];
+
+function dodge(e){
+  if(e)e.preventDefault();
+  n++;
+  no.textContent=msgs[Math.min(n,msgs.length-1)];
+  document.getElementById('title').textContent=titles[Math.min(Math.floor(n/2),titles.length-1)];
+  yes.style.transform='scale('+Math.min(1+n*.1,1.6)+')';
+  yes.style.marginRight=Math.min(n*4,24)+'px';
+  no.style.position='fixed';
+  var r=no.getBoundingClientRect();
+  var x=10+Math.random()*(innerWidth-r.width-20);
+  var y=20+Math.random()*(innerHeight-r.height-40);
+  no.style.left=x+'px';no.style.top=y+'px';
+}
+no.addEventListener('pointerenter',dodge);
+no.addEventListener('touchstart',dodge,{passive:false});
+no.addEventListener('click',dodge);
+
+function pop(cls,list,count,delay){
+  for(var i=0;i<count;i++){
+    var s=document.createElement('span');s.className=cls;
+    s.textContent=list[Math.floor(Math.random()*list.length)];
+    s.style.left=Math.random()*100+'vw';
+    s.style.fontSize=(18+Math.random()*26)+'px';
+    s.style.animationDuration=(delay+Math.random()*delay)+'s';
+    s.style.animationDelay=(Math.random()*(cls==='c'?1.2:delay))+'s';
+    document.body.appendChild(s);
+    (function(el){setTimeout(function(){el.remove()},(delay*2+3)*1000)})(s);
+  }
+}
+function floaters(){pop('f',['🍦','🍨','🍧','🍓','💖','🌸','🍒'],12,9)}
+floaters();setInterval(floaters,9000);
+
+yes.addEventListener('click',function(){
+  document.getElementById('askScreen').classList.add('hidden');
+  no.style.display='none';
+  document.getElementById('yesScreen').classList.remove('hidden');
+  pop('c',['🎉','💖','🍦','✨','🍓','🎀','🍨'],45,3);
+  document.getElementById('wa').href='https://wa.me/?text='+encodeURIComponent('Haan, chalenge ice cream khane! 🍦💖');
+});
+</script>
+</body>
+</html>
